@@ -46,6 +46,7 @@ namespace ams::mitm::sfdnsres::util
 
 namespace ams::mitm::sfdnsres
 {
+    /* cmd 12 */
     Result SfdnsresMitmService::GetAddrInfoRequestWithOptions(u32 cancel_handle,
                                                               const sf::ClientProcessId& client_pid,
                                                               bool use_nsd,
@@ -59,10 +60,13 @@ namespace ams::mitm::sfdnsres
                                                               sf::Out<u32> serialized_size)
     {
         Result res = ams::ResultSuccess();
-        //exosphere::ForceRebootToRcm();
+        sts::debug::DebugLog("Command 12 - GetAddrInfoRequestWithOptions");
+        sts::debug::DebugLog("Host: %s\n", reinterpret_cast<const char*>(host.GetPointer()));
+        exosphere::ForceRebootToRcm();
         return res;
     }
 
+    /* cmd 2 */
     Result SfdnsresMitmService::GetHostByNameRequest(u32 cancel_handle,
                                                      const sf::ClientProcessId& client_pid,
                                                      bool use_nsd_resolve,
@@ -73,6 +77,8 @@ namespace ams::mitm::sfdnsres
                                                      sf::Out<u32> out_buf_len)
     {
         Result res = ams::ResultSuccess();
+        sts::debug::DebugLog("Command 2 - GetHostByNameRequest");
+        exosphere::ForceRebootToRcm();
         sts::debug::DebugLog("Name: %s\n", reinterpret_cast<const char*>(name.GetPointer()));
 
         /*res = sfdnsresGetHostByNameRequest(cancel_handle,
@@ -88,10 +94,11 @@ namespace ams::mitm::sfdnsres
         return res;
     }
 
+    /* cmd 10 */
     Result SfdnsresMitmService::GetHostByNameRequestWithOptions(u32 cancel_handle,
                                                                 const sf::ClientProcessId& client_pid,
                                                                 bool use_nsd,
-                                                                const sf::InAutoSelectBuffer& buf1,
+                                                                const sf::InAutoSelectBuffer& host,
                                                                 const sf::OutAutoSelectBuffer& buf2,
                                                                 const sf::InAutoSelectBuffer& buf3,
                                                                 sf::Out<u32> h_errno,
@@ -99,10 +106,13 @@ namespace ams::mitm::sfdnsres
                                                                 sf::Out<u32> serialized_size)
     {
         Result res = ams::ResultSuccess();
+        sts::debug::DebugLog("Command 10 - GetHostByNameRequestWithOptions");
+        sts::debug::DebugLog("Name: %s\n", reinterpret_cast<const char*>(host.GetPointer()));
         exosphere::ForceRebootToRcm();
         return res;
     }
 
+    /* cmd 6 */
     Result SfdnsresMitmService::GetAddrInfoRequest(u32 cancel_handle,
                                                    const sf::ClientProcessId& client_pid,
                                                    bool use_nsd_resolve,
@@ -115,7 +125,11 @@ namespace ams::mitm::sfdnsres
                                                    sf::Out<u32> out_buf_len)
     {
         Result res;
+        sts::debug::DebugLog("Command 6 - GetAddrInfoRequest");
         sts::debug::DebugLog("Host: %s\n", reinterpret_cast<const char*>(host.GetPointer()));
+
+        exosphere::ForceRebootToRcm();
+
         sts::debug::DebugLog("Service: %s\n", reinterpret_cast<const char*>(service.GetPointer()));
         sts::debug::DebugLog("Hints: 0x%x\n", reinterpret_cast<const char*>(hints.GetPointer()));
         sts::debug::DebugLog("out_buf_len: %d\n", out_buf_len.GetValue());

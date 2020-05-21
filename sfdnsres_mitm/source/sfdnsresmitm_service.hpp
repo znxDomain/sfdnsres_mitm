@@ -43,6 +43,7 @@ namespace ams::mitm::sfdnsres
 
     protected:
         /* Overridden commands. */
+        /* cmd 12 */
         Result GetAddrInfoRequestWithOptions(u32 cancel_handle,
                                              const sf::ClientProcessId& client_pid,
                                              bool use_nsd,
@@ -54,17 +55,18 @@ namespace ams::mitm::sfdnsres
                                              sf::Out<u32> h_errno,
                                              sf::Out<u32> out_errno,
                                              sf::Out<u32> serialized_size);
-
+        /* cmd 10 */
         Result GetHostByNameRequestWithOptions(u32 cancel_handle,
                                                const sf::ClientProcessId& client_pid,
                                                bool use_nsd,
-                                               const sf::InAutoSelectBuffer& buf1,
+                                               const sf::InAutoSelectBuffer& host,
                                                const sf::OutAutoSelectBuffer& buf2,
                                                const sf::InAutoSelectBuffer& buf3,
                                                sf::Out<u32> h_errno,
                                                sf::Out<u32> out_errno,
                                                sf::Out<u32> serialized_size);
 
+        /* cmd 2 */
         Result GetHostByNameRequest(u32 cancel_handle,
                                     const sf::ClientProcessId& client_pid,
                                     bool use_nsd_resolve,
@@ -74,6 +76,7 @@ namespace ams::mitm::sfdnsres
                                     sf::Out<u32> h_errno,
                                     sf::Out<u32> out_buf_len);
 
+        /* cmd 6 */
         Result GetAddrInfoRequest(u32 cancel_handle,
                                   const sf::ClientProcessId& client_pid,
                                   bool use_nsd_resolve,
@@ -87,7 +90,7 @@ namespace ams::mitm::sfdnsres
 
     public:
         DEFINE_SERVICE_DISPATCH_TABLE{
-            //MAKE_SERVICE_COMMAND_META(GetHostByNameRequest),
+            MAKE_SERVICE_COMMAND_META(GetHostByNameRequest),
             MAKE_SERVICE_COMMAND_META(GetAddrInfoRequest),
             MAKE_SERVICE_COMMAND_META(GetHostByNameRequestWithOptions),
             MAKE_SERVICE_COMMAND_META(GetAddrInfoRequestWithOptions),

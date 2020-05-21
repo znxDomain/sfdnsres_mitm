@@ -123,7 +123,7 @@ struct SfdnsresManagerOptions
 int main(int argc, char** argv)
 {
 
-    std::ifstream hostfile = std::ifstream("/sfdnsres_mitm/hosts");
+    std::ifstream hostfile = std::ifstream("/config/sfdnsres_mitm/hosts");
     std::string line;
     sts::debug::DebugLog("Open?: %d\n", hostfile.is_open());
     while (std::getline(hostfile, line))
