@@ -56,6 +56,7 @@ namespace ams::mitm::sfdnsres
                                              sf::Out<u32> out_errno,
                                              sf::Out<u32> serialized_size);
         /* cmd 10 */
+        // confirmed working with ctest.nintendo.com
         Result GetHostByNameRequestWithOptions(u32 cancel_handle,
                                                const sf::ClientProcessId& client_pid,
                                                bool use_nsd,
@@ -90,10 +91,10 @@ namespace ams::mitm::sfdnsres
 
     public:
         DEFINE_SERVICE_DISPATCH_TABLE{
-            MAKE_SERVICE_COMMAND_META(GetHostByNameRequest),
+//             MAKE_SERVICE_COMMAND_META(GetHostByNameRequest),
             MAKE_SERVICE_COMMAND_META(GetAddrInfoRequest),
-            MAKE_SERVICE_COMMAND_META(GetHostByNameRequestWithOptions),
-            MAKE_SERVICE_COMMAND_META(GetAddrInfoRequestWithOptions),
+//             MAKE_SERVICE_COMMAND_META(GetHostByNameRequestWithOptions),
+//             MAKE_SERVICE_COMMAND_META(GetAddrInfoRequestWithOptions),
         };
     };
 
